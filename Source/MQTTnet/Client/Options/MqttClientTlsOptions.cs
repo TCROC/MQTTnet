@@ -32,11 +32,12 @@ namespace MQTTnet.Client
 #if NETCOREAPP3_1_OR_GREATER
         public List<System.Net.Security.SslApplicationProtocol> ApplicationProtocols { get; set; }
         
-        public System.Net.Security.CipherSuitesPolicy CipherSuitesPolicy { get; set; }
+        // public System.Net.Security.CipherSuitesPolicy CipherSuitesPolicy { get; set; }
 #endif
 
 #if NET48 || NETCOREAPP3_1_OR_GREATER
-        public SslProtocols SslProtocol { get; set; } = SslProtocols.Tls12 | SslProtocols.Tls13;
+        public SslProtocols SslProtocol { get; set; } = SslProtocols.Tls12 | (SslProtocols)0x00003000 /*Tls13*/;
+        // public SslProtocols SslProtocol { get; set; } = SslProtocols.Tls12 | SslProtocols.Tls13;
 #else
         public SslProtocols SslProtocol { get; set; } = SslProtocols.Tls12 | (SslProtocols)0x00003000 /*Tls13*/;
 #endif
